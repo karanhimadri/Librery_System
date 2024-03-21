@@ -159,7 +159,7 @@ public class librerySystem {
                     break;
             }
         }
-
+        // Always close Scanner object 
         sc.close();
     }
 }
