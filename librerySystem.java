@@ -111,31 +111,38 @@ public class librerySystem {
                     break;
 
                 case 2:
-                    System.out.print("Enter student name for Searching : ");
-                    targetStudent = sc.next();
-                    index = nameSearching(students, size, targetStudent);
+                System.out.print("Enter student name for Searching : ");
+                targetStudent = sc.next();
+                index = nameSearching(students, size, targetStudent);
+                
+                if (index != -1) {
+                    System.out.print("Enter New Name (press 0 to keep it unchanged): ");
+                    String newName = sc.next(); 
+                    if (!newName.equals("0")) { // Use equals() for String comparison, not !=
+                        students[index].setName(newName);
+                    }  else { }
+                    
+                    //******
+                    System.out.print("Enter New Student ID (press 0 to keep it unchanged): ");
+                    int updateStudentID = sc.nextInt();
+                    if (updateStudentID == 0) { // Use equals() for String comparison, not !=
+                         students[index].setStudentID(updateStudentID);
 
-                    if (index != -1) {
-                        System.out.print("Enter New Name (press Enter to keep it unchanged): ");
-                        String fatherName = sc.nextLine();
-                        if (fatherName.isEmpty()) {
-                            // If the input is empty, keep the existing fatherName
-                            fatherName = students[index] != null ? students[index].getName() : "";
-                        }
-                        System.out.print("Enter New Student ID : ");
-                        int updateStudentID = sc.nextInt();
-                        students[index].setStudentID(updateStudentID);
+                    } else { }
 
-                        System.out.print("Enter New Roll Number : ");
-                        String updateRollNumber = sc.next();
-                        students[index].setRollNumber(
-                                updateRollNumber.isEmpty() ? students[index].getRollNumber() : updateRollNumber);
+                    //******
+                    System.out.print("Enter New Roll Number (press 0 to keep it unchanged): ");
+                    String updateRollNumber = sc.next();
+                    if (updateRollNumber.equals("0")) { // Use equals() for String comparison, not !=
+                        students[index].setName(updateRollNumber);
+                    }  else { }
 
-                        System.out.print("Enter New Stream : ");
+                    //****** 
+                        System.out.print("Enter New Stream (press 0 to keep it unchanged): ");
                         String updateStream = sc.next();
-                        students[index].setStream(updateStream.isEmpty() ? students[index].getStream() : updateStream);
-                    } else {
-                        System.out.println("Student not found");
+                        if (!updateStream.equals("0")) { // Use equals() for String comparison, not !=
+                            students[index].setName(updateStream);
+                        } else { }
                     }
                     break;
 
