@@ -94,7 +94,8 @@ public class librerySystem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Random random = new Random();
-        Student[] students = new Student[1000];
+        Student[] students = new Student[1000];  //  " students " is the Array of object which is instance of class
+                                                             //  so here array type is --> Class "Student"
 
         String targetStudent = "";
         int index = 0;
@@ -106,80 +107,80 @@ public class librerySystem {
             System.out.print("Enter Your Wish : ");
             int choice = sc.nextInt();
 
-            if (choice == 0) { // Exit condition for the infinite loop
+            if (choice == 0) { // Exit condition for the infinite loop { that use for Unreachable Code ---> reachable Code }
                 break;
             }
 
             switch (choice) {
                 case 1:
                     System.out.println(" ");
-                    System.out.print("How many students want to make ID : ");
+                    System.out.print("How many students want to make ID : ");  // Taking total number of student
                     size = sc.nextInt();
 
                     for (int j = 0; j < size; j++) {
                         System.out.println(" ");
-                        System.out.print("Name : ");
+                        System.out.print("Name : "); // User Input
                         String name = sc.next();
 
-                        int studentID = random.nextInt(89999) + 10000;
+                        int studentID = random.nextInt(89999) + 10000;  // Create Student ID using Random number
 
-                        System.out.print("Roll Number : ");
+                        System.out.print("Roll Number : "); // User Input
                         String rollNumber = sc.next();
 
-                        System.out.print("Stream : ");
+                        System.out.print("Stream : ");  // User Input
                         String stream = sc.next();
 
                         System.out.println();
-                        students[j] = new Student(name, studentID, rollNumber, stream);
+                        students[j] = new Student(name, studentID, rollNumber, stream);// " new Student(name, studentID, rollNumber, stream); " this is object of Class name " Student "
+                                                                                       // Every user Input data create a new Object and store Index wise in the array name " students "
 
-                        System.out.print("How many book " + name + " want to take : ");
+                        System.out.print("How many book " + name + " want to take : "); // User input ---> total number of Book
                         int totalBooks = sc.nextInt();
 
                         for (int k = 0; k < totalBooks; k++) {
                             System.out.print("Enter " + "[ " + (k + 1) + " ] Book name : ");
                             String book = sc.next();
-                            students[j].chooseBook(book); // mind that "choosBook" is function and "booksHistory" is a
-                                                          // list or array
-                        } // where store book name
+                            students[j].chooseBook(book); // Remember that "choosBook" is function and "booksHistory" is a list or array  where store book name
+                        }
                     }
                     break;
 
                 case 2:
                     System.out.println(" ");
                     for (int m = 0; m < size; m++) {
-                        System.out.println((m+1)+" ) Name : " + students[m].getName());
+                        System.out.println((m+1)+" ) Name : " + students[m].getName());     // This case 2 is used for print ALL student name
                     }
                     System.out.println(" ");
                     break;
 
                 case 3:
-                    System.out.print("Enter student name for Searching : ");
+                    System.out.print("Enter student name for Searching : "); // User Input
                     targetStudent = sc.next();
-                    index = nameSearching(students, size, targetStudent);
+                    index = nameSearching(students, size, targetStudent);  // Function call for get specific Student Index 
 
-                    if (index != -1) {
+                    if (index != -1) {   // Check target student is got or not in Index
                         System.out.println("**press 0 to keep it unchanged** ");
-                        System.out.print("Enter New Name : ");
+                        System.out.print("Enter New Name : ");   // User Input
                         String newName = sc.next();
-                        if (!newName.equals("0")) {
+                        if (!newName.equals("0")) {     // check Input is Zero or not.
                             students[index].setName(newName);
                         }
 
-                        System.out.print("Enter New Student ID : ");
+                        System.out.print("Enter New Student ID : ");   // User Input
                         int updateStudentID = sc.nextInt();
-                        if (updateStudentID != 0) {
+                        if (updateStudentID != 0) {     // check Input is Zero or not.
                             students[index].setStudentID(updateStudentID);
                         }
 
-                        System.out.print("Enter New Roll Number : ");
+                        System.out.print("Enter New Roll Number : ");   // User Input
                         String updateRollNumber = sc.next();
-                        if (!updateRollNumber.equals("0")) {
+                        if (!updateRollNumber.equals("0")) {     // check Input is Zero or not.
                             students[index].setRollNumber(updateRollNumber);
                         }
 
-                        System.out.print("Enter New Stream : ");
+                        System.out.print("Enter New Stream : ");   // User Input
                         String updateStream = sc.next();
-                        if (!updateStream.equals("0")) {
+                        if (!updateStream.equals("0")) {     // check Input is Zero or not.
                             students[index].setStream(updateStream);
                         }
                     }
@@ -187,15 +188,15 @@ public class librerySystem {
 
                 case 4:
                     System.out.println(" ");
-                    System.out.print("Enter student name for Searching : ");
+                    System.out.print("Enter student name for Searching : "); // User Input
                     targetStudent = sc.next();
-                    index = nameSearching(students, size, targetStudent);
+                    index = nameSearching(students, size, targetStudent); // Function call for get specific Student Index 
 
-                    if (index != -1) {
+                    if (index != -1) {    // Check target student is got or not in Index
                         System.out.print("Enter Book name for removel : ");
                         String bookName = sc.next();
-                        boolean check_Remove_Or_Not = students[index].bookRemovel(bookName);
-
+                        boolean check_Remove_Or_Not = students[index].bookRemovel(bookName); // check that book is removed or not. if removed " check_Remove_Or_Not " ---> true
+                                                                                                                                                            //neither ---> false
                         if (check_Remove_Or_Not) {
                             System.out.println(bookName + " Removed Successfully from " + students[index].getName() + "'s account");
                         } else {
@@ -213,12 +214,12 @@ public class librerySystem {
                     index = nameSearching(students, size, targetStudent);
 
                     if (index != -1) {
-                        System.out.println("Name: " + students[index].getName());
+                        System.out.println("Name: " + students[index].getName());              // Display Profile of Specific student
                         System.out.println("Student ID: " + students[index].getStudentID());
                         System.out.println("Roll Number: " + students[index].getRollNumber());
                         System.out.println("Stream: " + students[index].getStream());
                         System.out.println(" ");
-                        students[index].displayChosenBooks();
+                        students[index].displayChosenBooks();  // Display Books of Specific student
                         System.out.println(" ");
                     } else {
                         System.out.println("Student not found");
