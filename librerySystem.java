@@ -63,6 +63,11 @@ class Student {
             System.out.println("- " + book);
         }
     }
+
+    public boolean bookRemovel(String bookName) {
+        return booksHistory.remove(bookName); // It returns "true" if the book was found and removed, and "false"
+                                              // otherwise.
+    }
 }
 
 public class librerySystem {
@@ -78,10 +83,12 @@ public class librerySystem {
 
     public static void optionDisplay() {
         System.out.println("1. Add Student");
-        System.out.println("2. Update Student Information");
-        System.out.println("3. Display Student Profile");
+        System.out.println("2. Print All Student Name");
+        System.out.println("3. Update Student Information");
+        System.out.println("4. Book Removel");
+        System.out.println("5. Display Student Profile");
         System.out.println("0. Exit");
-        System.out.println();
+        System.out.println(" ");
     }
 
     public static void main(String[] args) {
@@ -138,38 +145,69 @@ public class librerySystem {
                     break;
 
                 case 2:
-                System.out.print("Enter student name for Searching : ");
-                targetStudent = sc.next();
-                index = nameSearching(students, size, targetStudent);
-
-                if (index != -1) {
-                    System.out.print("Enter New Name (press 0 to keep it unchanged): ");
-                    String newName = sc.next();
-                    if (!newName.equals("0")) {
-                        students[index].setName(newName);
+                    System.out.println(" ");
+                    for (int m = 0; m < size; m++) {
+                        System.out.println((m+1)+" ) Name : " + students[m].getName());
                     }
-
-                    System.out.print("Enter New Student ID (press 0 to keep it unchanged): ");
-                    int updateStudentID = sc.nextInt();
-                    if (updateStudentID != 0) {
-                        students[index].setStudentID(updateStudentID);
-                    }
-
-                    System.out.print("Enter New Roll Number (press 0 to keep it unchanged): ");
-                    String updateRollNumber = sc.next();
-                    if (!updateRollNumber.equals("0")) {
-                        students[index].setRollNumber(updateRollNumber);
-                    }
-
-                    System.out.print("Enter New Stream (press 0 to keep it unchanged): ");
-                    String updateStream = sc.next();
-                    if (!updateStream.equals("0")) {
-                        students[index].setStream(updateStream);
-                    }
-                }
-                break;
+                    System.out.println(" ");
+                    break;
 
                 case 3:
+                    System.out.print("Enter student name for Searching : ");
+                    targetStudent = sc.next();
+                    index = nameSearching(students, size, targetStudent);
+
+                    if (index != -1) {
+                        System.out.println("**press 0 to keep it unchanged** ");
+                        System.out.print("Enter New Name : ");
+                        String newName = sc.next();
+                        if (!newName.equals("0")) {
+                            students[index].setName(newName);
+                        }
+
+                        System.out.print("Enter New Student ID : ");
+                        int updateStudentID = sc.nextInt();
+                        if (updateStudentID != 0) {
+                            students[index].setStudentID(updateStudentID);
+                        }
+
+                        System.out.print("Enter New Roll Number : ");
+                        String updateRollNumber = sc.next();
+                        if (!updateRollNumber.equals("0")) {
+                            students[index].setRollNumber(updateRollNumber);
+                        }
+
+                        System.out.print("Enter New Stream : ");
+                        String updateStream = sc.next();
+                        if (!updateStream.equals("0")) {
+                            students[index].setStream(updateStream);
+                        }
+                    }
+                    break;
+
+                case 4:
+                    System.out.println(" ");
+                    System.out.print("Enter student name for Searching : ");
+                    targetStudent = sc.next();
+                    index = nameSearching(students, size, targetStudent);
+
+                    if (index != -1) {
+                        System.out.print("Enter Book name for removel : ");
+                        String bookName = sc.next();
+                        boolean check_Remove_Or_Not = students[index].bookRemovel(bookName);
+
+                        if (check_Remove_Or_Not) {
+                            System.out.println(bookName + " Removed Successfully from " + students[index].getName() + "'s account");
+                        } else {
+                            System.out.println(bookName + " Book Not found from " + students[index].getName() + "'s account");
+                        }
+                    } else {
+                        System.out.println();
+                    }
+                    System.out.println(" ");
+                    break;
+
+                case 5:
                     System.out.print("Enter student name for Searching : ");
                     targetStudent = sc.next();
                     index = nameSearching(students, size, targetStudent);
